@@ -1,30 +1,23 @@
 package Pieces;
 
+import Player.ChessColor;
+import java.util.List;
+import Board.*;
+
 public abstract class Piece {
-	protected int _x, _y;
 	
-	Piece(int x, int y){
-		_x = x;
-		_y = y;
+	protected final int _position;
+	protected final ChessColor _color;
+	
+	Piece(int position, ChessColor color){
+		_position = position;
+		_color = color;
 	}
 	
-	public abstract boolean isPathValid(int x, int y);	//czy nie ma kolizji
-	
-	public abstract boolean isMoveValid(int x, int y);	//czy mo¿e wykonaæ ten ruch
-	
-	public void setCoordinateX(int x) {
-		_x = x;
-	}
-	public void setCoordinateY(int y) {
-		_y = y;
+	public ChessColor getPieceColor(){
+		return _color;
 	}
 	
-	public int getCoordinateX() {
-		return _x;
-	}
-	public int getCoordinateY() {
-		return _y;
-	}
-	public abstract PieceType getType();
+	public abstract List<Move> calculateLegalMoves(final Board board);
 	
 }
